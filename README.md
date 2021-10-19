@@ -1,2 +1,3 @@
 # The-Go-Programming-Language
-learing time
+ 1.go programming language syntax
+ 2.go basic
