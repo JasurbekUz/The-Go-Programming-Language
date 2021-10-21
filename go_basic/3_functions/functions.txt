@@ -1,0 +1,17 @@
+		funksiyalar
+
+1. niladic functions (niladic funksya)
+
+	hechnarsa qaytarmaydigan funksiya "niladic function" deyiladi
+
+	*1_niladic.go
+
+2. qiymat qaytaradigan funksiya
+
+	qachon funksiyaning returini qandaydir qiymat qaytarsa, u holda "function signature bo'lishi shart"
+
+	*2_func_with_return.go
+
+	function signature: isActive() bool 
+
+value ning qiymat qabul qilish razaeri uning typr xuxusiyatigaham kirib ketadi
