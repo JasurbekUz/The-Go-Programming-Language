@@ -48,11 +48,11 @@ Basic types
 		byte - alias for uint8
 		rune - alias for int32 (represents a Unicode code point)
 
-	//**********************UZBEK CONTENT********************************//
-	//**********************UZBEK CONTENT********************************//
-	//**********************UZBEK CONTENT********************************//
+	//***************UZBEK CONTENT*******************//
+	
 
-	go da harqanday elon qilingan identifier data taype hisoblanadi.
+	*go da harqanday elon qilingan identifier data taype hisoblanadi.
+
 	hattoki 'int64' va 'int32' kabilarham boshqa-boshqa data typlar hisoblanadi. Yani biz
 	bir-xil bo'lmagan data typlar orasida ammalr bajara olmaymiz
 
@@ -67,6 +67,7 @@ Basic types
 
 
 	*go da harqanday elon qilingan identifier data taype hisoblanadi.
+
 	yani biz elon qilgan function lar ham, struct larham ularning signaturelari yoki fieldlari ga qarab turli-typlar hisoblanadi!
 
 	ex: func(int)int {} va func(float32) int {} kabilar alohoda typelar hisonlanadi
