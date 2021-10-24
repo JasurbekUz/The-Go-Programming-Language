@@ -1,0 +1,10 @@
+		O'zgarmaslar
+
+o'zgarmaslarni qiymatini dastur davomida o'zgartirib bo'lmaydi
+
+	o'zgaruvchanlardan farqi
+1. e'lon qilingan o'zgarmasni dasturimizda ishlatmasak xato hisobnlanmaydi
+
+2. o'zgarmaslarga qiymat sifatida faqatgina 
+	 numeric types, boolen, string yozishimiz mumkin
+ 	 
