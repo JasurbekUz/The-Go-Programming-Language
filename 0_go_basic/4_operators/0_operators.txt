@@ -1,4 +1,4 @@
-			# Golang Operators 
+			Golang Operators 
 
 An operator is a symbol that tells the compiler to perform certain actions. 
 The following lists describe the different operators used in Golang.
@@ -10,7 +10,7 @@ The following lists describe the different operators used in Golang.
     4.Logical Operators
     5.Bitwise Operators
 
-    *****			*****			*****			*****
+    *****			*****			*****			*****	
 
 
 			1.Arithmetic Operators in Go Programming Language
@@ -66,8 +66,8 @@ _________|______________|_______________________________________________________
 			5.Bitwise Operators in Go Programming Language	
 			
 Operator |	Name 				|	Description
-_________|______________________|______________________________________________________________________________________________
-& 		 |	AND 	        	|	Sets each bit to 1 if both bits are 1
+_________|______________________|______________________________________________________________________________________________________________
+& 		 |	AND 				|	Sets each bit to 1 if both bits are 1
 | 		 |	OR 					|	Sets each bit to 1 if one of two bits is 1
 ^ 		 |	XOR 				|	Sets each bit to 1 if only one of two bits is 1
 << 		 |	Zero fill left shift| 	Shift left by pushing zeros in from the right and let the leftmost bits fall off
