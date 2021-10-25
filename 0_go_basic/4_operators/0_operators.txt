@@ -1,0 +1,83 @@
+			Golang Operators 
+
+An operator is a symbol that tells the compiler to perform certain actions. 
+The following lists describe the different operators used in Golang.
+
+
+    1.Arithmetic Operators
+    2.Assignment Operators
+    3.Comparison Operators
+    4.Logical Operators
+    5.Bitwise Operators
+
+    *****			*****			*****			*****
+
+
+			1.Arithmetic Operators in Go Programming Language
+
+Operator |	Description   |   Example |	Result
+_________|________________|___________|_______________________________________
++ 		 |	Addition 	  |	  x + y   |	Sum of x and y
+- 		 |	Subtraction   |	  x - y   |	Subtracts one value from another
+* 		 |	Multiplication|   x * y   |	Multiplies two values
+/ 		 |	Division 	  |	  x / y   |	Quotient of x and y
+% 		 |	Modulus 	  |	  x % y   |	Remainder of x divided by y
+++ 		 |	Increment 	  |	  x++ 	  | Increases the value of a variable by 1
+-- 		 |	Decrement 	  |	  x-- 	  | Decreases the value of a variable by 1
+
+					***		***		***
+
+			2.Assignment Operators in Go Programming Language			
+
+Assignment 	|	Description 				|	Example
+____________|_______________________________|________________
+x = y 		|	Assign 						|	x = y
+x += y 		|	Add and assign 				|	x = x + y
+x -= y 		|	Subtract and assign 		|	x = x - y
+x *= y 		|	Multiply and assign 		|	x = x * y
+x /= y 		|	Divide and assign quotient 	|	x = x / y
+x %= y 		|	Divide and assign modulus 	|	x = x % y	
+
+					***		***		***		
+
+			3.Comparison Operators in Go Programming Language
+
+Operator |	Name 						|	Example |	Result
+_________|______________________________|___________|____________________________________________
+== 		 |	Equal 						|	x == y 	|	True if x is equal to y
+!= 		 |	Not equal 					|	x != y 	|	True if x is not equal to y
+< 		 |	Less than 					|	x < y 	|	True if x is less than y
+<= 	  	 |	Less than or equal to 		|	x <= y 	|	True if x is less than or equal to y
+> 		 |	Greater than 				|	x > y 	|	True if x is greater than y
+>= 		 |	Greater than or equal to 	|	x >= y 	|	True if x is greater than or equal to y	
+
+					***		***		***		
+
+			4.Logical Operators in Go Programming Language
+
+Operator |	Name 		|	Description 											|		Example
+_________|______________|___________________________________________________________|_________________________
+&& 		 |	Logical And |	Returns true if both statements are true 				|	x < y && x > z
+|| 		 |	Logical Or 	|	Returns true if one of the statements is true 			|	x < y || x > z
+! 		 |	Logical Not |	Reverse the result, returns false if the result is true |	!(x == y && x > z)		
+
+					***		***		***
+
+			5.Bitwise Operators in Go Programming Language	
+			
+Operator |	Name 				|	Description
+_________|______________________|______________________________________________________________________________________________________________
+& 		 |	AND 				|	Sets each bit to 1 if both bits are 1
+| 		 |	OR 					|	Sets each bit to 1 if one of two bits is 1
+^ 		 |	XOR 				|	Sets each bit to 1 if only one of two bits is 1
+<< 		 |	Zero fill left shift| 	Shift left by pushing zeros in from the right and let the leftmost bits fall off
+>> 		 |	Signed right shift 	|	Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off							
+
+
+
+
+
+___________________________________________________________________________
+                      |            |       |
+Jasurbek Shamsitdinov | 2021 10 25 | 16:20 | Uzbekistan_Tashkent_Chilanzar
+______________________|____________|_______|_______________________________
