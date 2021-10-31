@@ -1,3 +1,6 @@
+// sana: 2021 10 31
+// muallif: Jasurbek Shamsitdinov
+
 package main
 
 import (
