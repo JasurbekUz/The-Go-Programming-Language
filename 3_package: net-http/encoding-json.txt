@@ -1,0 +1,24 @@
+go dagi datani json formatga o'girish:
+
+  1.
+	marshal - datani byte ga ogiradi
+
+	marshal - muvofaqiyatli bolsa qiymat va error qaytaradi
+
+	byt, err := json.Marshal("nima gap")
+
+  2. 
+    byt stringga o'giriladi
+	
+	json := string(byt) WWW
+
+
+json formatni go tushunanigan type ga o'girish
+	
+  1.
+  	biz json formatda kelgan ma;lumotni go tushunadigan formatga otkazish uchun
+
+  	bizda jsondan kelgan ma'lumot ga to'g'ri keladgan structura bo'lishi kerak
+
+
+

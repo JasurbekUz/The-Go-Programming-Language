@@ -1,0 +1,7 @@
+
+REST API - asosan json bilan ishlaydi
+
+handle funcni ichiga yozgan funksiyamiz kontroller deyiladi
+
+MVS - model viewer controller => database + controller + view
+
