@@ -1,7 +1,78 @@
 # The-Go-Programming-Language
  ### 0 go_basic
+ #### operators
+ 			Golang Operators 
 
- ### 01 concurrency
+An operator is a symbol that tells the compiler to perform certain actions. 
+The following lists describe the different operators used in Golang.
+
+
+    1.Arithmetic Operators
+    2.Assignment Operators
+    3.Comparison Operators
+    4.Logical Operators
+    5.Bitwise Operators
+```
+			1.Arithmetic Operators in Go Programming Language
+
+Operator         |	Description       |   Example     |	Result
+_________________|________________________|_______________|__________________________________
++ 		 |	Addition 	  |     x + y     |	Sum of x and y
+- 		 |	Subtraction   	  |	x - y     |	Subtracts one value from another
+* 		 |	Multiplication    |     x * y     |	Multiplies two values
+/ 		 |	Division 	  |     x / y     |	Quotient of x and y
+% 		 |	Modulus 	  |	x % y     |	Remainder of x divided by y
+++ 		 |	Increment 	  |	 x++ 	  |     Increases the value of a variable by 1
+-- 		 |	Decrement 	  |	 x-- 	  |     Decreases the value of a variable by 1
+```
+```
+			2.Assignment Operators in Go Programming Language			
+
+Assignment 	|	Description 			|	Example
+________________|__________________________________________________________
+x = y 		|	Assign 			        |	x = y
+x += y 		|	Add and assign 			|	x = x + y
+x -= y 		|	Subtract and assign 		|	x = x - y
+x *= y 		|	Multiply and assign 		|	x = x * y
+x /= y 		|	Divide and assign quotient 	|	x = x / y
+x %= y 		|	Divide and assign modulus 	|	x = x % y	
+```
+```
+			3.Comparison Operators in Go Programming Language
+
+Operator         |	Name 			|	Example |	Result
+_________________|______________________________|_______________|____________________________________________
+== 		 |	Equal 			|	x == y 	|	True if x is equal to y
+!= 		 |	Not equal 		|	x != y 	|	True if x is not equal to y
+< 		 |	Less than 		|	x < y 	|	True if x is less than y
+<= 	  	 |	Less than or equal to 	|	x <= y 	|	True if x is less than or equal to y
+> 		 |	Greater than 		|	x > y 	|	True if x is greater than y
+>= 		 |	Greater than or equal to|	x >= y 	|	True if x is greater than or equal to y	
+```
+```
+			4.Logical Operators in Go Programming Language
+
+Operator         |	Name 		|	Description 					                |		Example
+_________________|______________________|_______________________________________________________________________|_________________________
+&& 		 |	Logical And     |	Returns true if both statements are true 			|	x < y && x > z
+|| 		 |	Logical Or 	|	Returns true if one of the statements is true 			|	x < y || x > z
+! 		 |	Logical Not     |	Reverse the result, returns false if the result is true         |	!(x == y && x > z)		
+```
+
+```
+			5.Bitwise Operators in Go Programming Language	
+			
+Operator         |	Name 				|	Description
+_________________|______________________________________|______________________________________________________________________________________________________________
+& 		 |	AND 				|	Sets each bit to 1 if both bits are 1
+| 		 |	OR 				|	Sets each bit to 1 if one of two bits is 1
+^ 		 |	XOR 				|	Sets each bit to 1 if only one of two bits is 1
+<< 		 |	Zero fill left shift            | 	Shift left by pushing zeros in from the right and let the leftmost bits fall off
+>> 		 |	Signed right shift 	        |	Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off							
+```
+***
+
+ ### 02 concurrency
  - **concurrency** - ikki yoki undan ortiq **vazifalarni** bir vaqtning o'zida (parallel) bajarish tushunchasi. **vazifalar** metodlar (funksiyalari), dastur qismlari yoki boshqa dasturlarni o'z ichiga olishi mumkin.
 - Golangdagi parallellik - bu funktsiyalarning bir-biridan mustaqil ishlashi qobiliyati. Goroutine - bu boshqa funktsiyalar bilan bir vaqtda ishlashga qodir bo'lgan funktsiya. Funktsiyani gorutin sifatida yaratganingizda, u rejalashtirilgan bo'lib, keyin mavjud mantiqiy protsessorda bajariladigan mustaqil ish birligi sifatida ko'rib chiqiladi.
 
@@ -170,3 +241,204 @@ func main() {
 ```
 ### buffered channel
 * 
+* buffered chanellarda ma'lumot tugagan bo'lsayu, biz ma'lumot olmaoqchi bo'lsak deadlock bo'ladi!
+```
+package main
+
+import "fmt"
+
+func main() {
+	channel := make(chan int, 3)
+
+	chanValue := <-channel //ma'llumot olmoqchibo'lyapmiz,lekin ma'lumot bermyapmiz
+	fmt.Println(chanValue)
+}
+/*
+out:
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan receive]:
+main.main()
+	/home/ubuntu/Desktop/JasurbekUz/The-Go-Programming-Language/01_concurrency/3_deadlock_with_buffered-channels/1_deadlock-1.go:7 +0x3c
+exit status 2
+*/
+```
+* buffered chanellar to'lgan bo'lsayu, biz yana ma'lumot yozmoqchi bo'lsak deadlock bo'ladi!
+```
+package main
+
+import "fmt"
+
+func main() {
+	channel := make(chan int, 3) //channel o'zida 3ta ma'lumot saqlaydi
+	channel <- 4                 //1-ma'lumot yozildi
+	channel <- 5                 //2-ma'lumot yozildi
+	channel <- 7                 //3-ma'lumot yozildi channelto'ldi
+	channel <- 8                 //4-ma'lumotni ma'lumotni yozmoqchi bo'lyapmiz
+	fmt.Println(<-channel, <-channel, <-channel)
+}
+/*
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan send]:
+main.main()
+	/home/ubuntu/Desktop/JasurbekUz/The-Go-Programming-Language/01_concurrency/3_deadlock_with_buffered-channels/2_deadlock-2.go:10 +0x7b
+exit status 2
+*/
+```
+* **len(), cap() funlsiyalai**
+* len() funksiyasi orqali biz channelda nechta ma'lumto borligini bilamiz
+* cap() funksiyasi orqali biz channelning sig'imini bilamiz
+```
+package main
+
+import "fmt"
+
+func main() {
+	channel := make(chan int, 7)
+	channel <- 7
+	channel <- 5
+	channel <- 3
+	fmt.Printf("uzunligi: %d; sig'imi: %d\n", len(channel), cap(channel))
+	fmt.Println(<-channel) //bitta ma'lumot olyapmiz, bunda birinchi yozgan ma'lumotimiz keladi!
+	fmt.Printf("uzunligi: %d; sig'imi: %d", len(channel), cap(channel))
+}
+/*
+out:
+uzunligi: 3; sig'imi: 7
+7
+uzunligi: 2; sig'imi: 7
+*/
+```
+* buffered channellarda yozilgan ma'lumotni concurrent qabul qilinishi shart emas, ular malumot olinishini kutadi!
+```
+package main
+
+func main() {
+	channel := make(chan int, 3)
+	channel <- 4
+	channel <- 5
+	channel <- 6
+	//channel to'ldi, lekin ma'lumot qabulq qilmayapmi
+	//bu deadlock emas!!!
+}
+```
+*yuqorida korgan barcha channellar Bidirectional channellar hisoblanadi!*
+***
+* **Bidirectional Channels,<br> Receive-only Channels,<br> Send-only Channels**
+```
+var bidirectionalChan chan string // can read from, write to and close()
+var receiveOnlyChan <-chan string // can read from, but cannot write to or close()
+var sendOnlyChan chan<- string    // cannot read from, but can write to and close
+```
+* Bidirectional Channels:
+bu channeldan ma'lumot ma'lumot o'qibham, yoziham bo'ladi!
+```
+package main
+
+import "fmt"
+
+func function(ch chan int) {
+	fmt.Println(<-ch) //main funcdan kelgan ma'lumot o'qildi
+	ch <- 225         // ma'lumotyozildi!
+}
+func main() {
+	ch := make(chan int)
+	go function(ch)
+	ch <- 5           //channelga ma'lumot yozildi
+	fmt.Println(<-ch) //functiondan kelgan ma'lumot o'qildi!
+}
+/*
+out:
+5
+225
+*/
+```
+
+* receive only channel:
+bu channeldan faqatgina ma'lumot ololamiz(ma'lumot yozib bo'lmaydi!)
+```
+package main
+
+import "fmt"
+
+func fn(ch <-chan int) {
+	fmt.Println(<-ch)
+
+	ch <- 4 // receive only channelga ma'lumot yozmib bo'lmaydi!!!
+}
+func main() {
+	ch := make(chan int)
+
+	go fn(ch)
+	ch <- 2
+}
+/*
+out:
+.go:8:5: invalid operation: ch <- 4 (send to receive-only type <-chan int)
+
+*/
+```
+* send onl channel
+bu channle orqali faqat ma'lumot jo'nata olamiz(ma'lumot o'qib bo'lmaydi):
+```
+package main
+
+import "fmt"
+
+func fn(ch chan<- int) {
+	fmt.Println(<-ch) //ma'lumot o'qib bo'lmaydi!
+	ch <- 7           // ma'lumotjo'natdik
+}
+func main() {
+	ch := make(chan int)
+
+	go fn(ch)
+	fmt.Println(<-ch)
+}
+/*
+out:
+.go:6:14: invalid operation: <-ch (receive from send-only type chan<- int)
+
+*/
+```
+
+#### 5 waitgroup
+
+concurrent yuz berayotgan hodisalarni kutib turish maqsadida *sync* paketidan foydalanamiz
+- bir vaqta ishlab turgan funksiyalrni kutib turish uchun waitGroup dan foydalanamiz
+```
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func fn1(wg *sync.WaitGroup) {
+	defer wg.Done()		// 3-1=2
+	fmt.Println("fn1")
+}
+func fn2(wg *sync.WaitGroup) {
+	defer wg.Done()		// 1-1=0
+	fmt.Println("fn2")
+}
+func fn3(wg *sync.WaitGroup) {
+	defer wg.Done()		// 2-1=1
+	fmt.Println("fn3")
+}
+func main() {
+	var wg sync.WaitGroup
+	wg.Add(3)		//+3
+
+	go fn1(&wg)
+	go fn2(&wg)
+	go fn3(&wg)
+
+	wg.Wait()
+}
+```
+#### 6 data_race
+```
+go run -race main.go
+```
