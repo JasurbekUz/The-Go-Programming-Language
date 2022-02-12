@@ -15,15 +15,15 @@ The following lists describe the different operators used in Golang.
 ```
 1.Arithmetic Operators in Go Programming Language
 
-Operator |	Description   |   Example |	Result
-_________|________________|___________|_______________________________________
-+ 		 |	Addition 	  |	  x + y   |	Sum of x and y
-- 		 |	Subtraction   |	  x - y   |	Subtracts one value from another
-* 		 |	Multiplication|   x * y   |	Multiplies two values
-/ 		 |	Division 	  |	  x / y   |	Quotient of x and y
-% 		 |	Modulus 	  |	  x % y   |	Remainder of x divided by y
-++ 		 |	Increment 	  |	  x++ 	  | Increases the value of a variable by 1
--- 		 |	Decrement 	  |	  x-- 	  | Decreases the value of a variable by 1
+Operator |	Description  |   Example      |	Result
+_________|__________________|________________|_______________________________________
++ 	  |	Addition      |	  x + y   |	Sum of x and y
+- 	  |	Subtraction   |	  x - y   |	Subtracts one value from another
+* 	  |	Multiplication|   x * y        |	Multiplies two values
+/ 	  |	Division      |	  x / y   |	Quotient of x and y
+% 	  |	Modulus       |	  x % y   |	Remainder of x divided by y
+++ 	  |	Increment     |	  x++ 	   | Increases the value of a variable by 1
+-- 	  |	Decrement     |	  x-- 	   | Decreases the value of a variable by 1
 ```
 ***
 
