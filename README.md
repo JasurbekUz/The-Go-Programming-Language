@@ -13,64 +13,20 @@ The following lists describe the different operators used in Golang.
     4.Logical Operators
     5.Bitwise Operators
 ```
-			1.Arithmetic Operators in Go Programming Language
+1.Arithmetic Operators in Go Programming Language
 
-Operator         |	Description       |   Example     |	Result
-_________________|________________________|_______________|__________________________________
-+ 		 |	Addition 	  |     x + y     |	Sum of x and y
-- 		 |	Subtraction   	  |	x - y     |	Subtracts one value from another
-* 		 |	Multiplication    |     x * y     |	Multiplies two values
-/ 		 |	Division 	  |     x / y     |	Quotient of x and y
-% 		 |	Modulus 	  |	x % y     |	Remainder of x divided by y
-++ 		 |	Increment 	  |	 x++ 	  |     Increases the value of a variable by 1
--- 		 |	Decrement 	  |	 x-- 	  |     Decreases the value of a variable by 1
-```
-```
-			2.Assignment Operators in Go Programming Language			
-
-Assignment 	|	Description 			|	Example
-________________|__________________________________________________________
-x = y 		|	Assign 			        |	x = y
-x += y 		|	Add and assign 			|	x = x + y
-x -= y 		|	Subtract and assign 		|	x = x - y
-x *= y 		|	Multiply and assign 		|	x = x * y
-x /= y 		|	Divide and assign quotient 	|	x = x / y
-x %= y 		|	Divide and assign modulus 	|	x = x % y	
-```
-```
-			3.Comparison Operators in Go Programming Language
-
-Operator         |	Name 			|	Example |	Result
-_________________|______________________________|_______________|____________________________________________
-== 		 |	Equal 			|	x == y 	|	True if x is equal to y
-!= 		 |	Not equal 		|	x != y 	|	True if x is not equal to y
-< 		 |	Less than 		|	x < y 	|	True if x is less than y
-<= 	  	 |	Less than or equal to 	|	x <= y 	|	True if x is less than or equal to y
-> 		 |	Greater than 		|	x > y 	|	True if x is greater than y
->= 		 |	Greater than or equal to|	x >= y 	|	True if x is greater than or equal to y	
-```
-```
-			4.Logical Operators in Go Programming Language
-
-Operator         |	Name 		|	Description 					                |		Example
-_________________|______________________|_______________________________________________________________________|_________________________
-&& 		 |	Logical And     |	Returns true if both statements are true 			|	x < y && x > z
-|| 		 |	Logical Or 	|	Returns true if one of the statements is true 			|	x < y || x > z
-! 		 |	Logical Not     |	Reverse the result, returns false if the result is true         |	!(x == y && x > z)		
-```
-
-```
-			5.Bitwise Operators in Go Programming Language	
-			
-Operator         |	Name 				|	Description
-_________________|______________________________________|______________________________________________________________________________________________________________
-& 		 |	AND 				|	Sets each bit to 1 if both bits are 1
-| 		 |	OR 				|	Sets each bit to 1 if one of two bits is 1
-^ 		 |	XOR 				|	Sets each bit to 1 if only one of two bits is 1
-<< 		 |	Zero fill left shift            | 	Shift left by pushing zeros in from the right and let the leftmost bits fall off
->> 		 |	Signed right shift 	        |	Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off							
+Operator |	Description   |   Example |	Result
+_________|________________|___________|_______________________________________
++ 		 |	Addition 	  |	  x + y   |	Sum of x and y
+- 		 |	Subtraction   |	  x - y   |	Subtracts one value from another
+* 		 |	Multiplication|   x * y   |	Multiplies two values
+/ 		 |	Division 	  |	  x / y   |	Quotient of x and y
+% 		 |	Modulus 	  |	  x % y   |	Remainder of x divided by y
+++ 		 |	Increment 	  |	  x++ 	  | Increases the value of a variable by 1
+-- 		 |	Decrement 	  |	  x-- 	  | Decreases the value of a variable by 1
 ```
 ***
+
 
  ### 02 concurrency
  - **concurrency** - ikki yoki undan ortiq **vazifalarni** bir vaqtning o'zida (parallel) bajarish tushunchasi. **vazifalar** metodlar (funksiyalari), dastur qismlari yoki boshqa dasturlarni o'z ichiga olishi mumkin.
