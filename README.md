@@ -15,20 +15,195 @@ The following lists describe the different operators used in Golang.
 ```
 1.Arithmetic Operators in Go Programming Language
 
-Operator |	Description  |   Example      |	Result
-_________|__________________|________________|_______________________________________
-+ 	  |	Addition      |	  x + y   |	Sum of x and y
-- 	  |	Subtraction   |	  x - y   |	Subtracts one value from another
-* 	  |	Multiplication|   x * y        |	Multiplies two values
-/ 	  |	Division      |	  x / y   |	Quotient of x and y
-% 	  |	Modulus       |	  x % y   |	Remainder of x divided by y
-++ 	  |	Increment     |	  x++ 	   | Increases the value of a variable by 1
--- 	  |	Decrement     |	  x-- 	   | Decreases the value of a variable by 1
+Operator |	Description   |   Example |	Result
+_________|________________|___________|_______________________________________
++ 		 |	Addition 	  |	  x + y   |	Sum of x and y
+- 		 |	Subtraction   |	  x - y   |	Subtracts one value from another
+* 		 |	Multiplication|   x * y   |	Multiplies two values
+/ 		 |	Division 	  |	  x / y   |	Quotient of x and y
+% 		 |	Modulus 	  |	  x % y   |	Remainder of x divided by y
+++ 		 |	Increment 	  |	  x++ 	  | Increases the value of a variable by 1
+-- 		 |	Decrement 	  |	  x-- 	  | Decreases the value of a variable by 1
 ```
 ***
+### 01 modules, packages
+### 02 interface
+1. go da interface ni any typlar ni qabul qilish uchun ishlata olamiz:
+```
+package main
 
+import "fmt"
 
- ### 02 concurrency
+func Input(anyType interface{}) {
+	switch anyType.(type) { // anyType.(type) - type switch 
+	case int:
+		fmt.Println("integer")
+	case string:
+		fmt.Println("string")
+	default:
+		fmt.Println("Unsupported type")
+	}
+}
+func main() {
+	var anyType interface{}
+	anyType = 25
+	Input(anyType)
+}
+/*
+out:
+integer*/
+```
+* **2.** 
+### 03 embedded struct
+- embedded struct - bu bitta struct boshqa bir struct ni o'z ichiga olishi (= OOP(Inheritance)):
+```
+package main
+
+import "fmt"
+
+type Component struct {
+	Name  string
+	Sugar int
+}
+type Fruit struct {
+	Component
+}
+type Vagetable struct {
+	Component
+}
+
+func main() {
+	var fruit Fruit = Fruit{Component{"Apple", 2}}
+	fruit.Name = "Cherry"
+	vegetable := Vagetable{}
+	fmt.Println(fruit)
+	fmt.Println(vegetable)
+}
+```
+- Method overriding - Super klasda e'lon qilingan metodni child classda qaytadan yozish.
+```
+package main
+
+import "fmt"
+
+type OS struct{}
+
+// method of supperclass.
+func (OS) Version() {
+	fmt.Println("OS version")
+}
+
+type Linux struct {
+	OS
+}
+
+type MacOs struct {
+	OS
+}
+
+// method overriding.
+func (MacOs) Version() {
+	fmt.Println("MacOs version")
+}
+func main() {
+	m := MacOs{}
+	l := Linux{}
+	m.Version() //calling method overriding
+	l.Version() //calling method of supperclass
+}
+
+/*
+out:
+MacOs version
+OS version
+*/
+```
+- supper call
+```
+package main
+
+import "fmt"
+
+type OS struct {
+	Name string
+}
+
+// method of supperclass.
+func (o OS) GetName() string {
+	return o.Name
+}
+
+type Linux struct {
+	OS
+}
+
+type MacOs struct {
+	OS
+}
+
+// method overriding.
+func (l Linux) GetName() string {
+	//supper call
+	//l.Os.Name
+	return "Linux - " + l.OS.Name
+}
+func main() {
+	m := MacOs{OS{"Big Sur"}}
+	l := Linux{OS{"Ubuntu"}}
+	fmt.Println(m.GetName()) // calling method of supperclass
+	fmt.Println(l.GetName()) // calling method overridding and calling method of supperclass
+}
+
+/*
+out:
+Big Sur
+Linux - Ubuntu
+*/
+```
+- bitta shablonga asoslangan multiple struclar bilan yagona funksiya yozishham interace orqali bo'ladi
+```
+package main
+
+import "fmt"
+
+type Os struct {
+	Name string
+}
+
+type MacOs struct { // birinchi struct
+	Os
+}
+
+type Linux struct { // ikkinchi struct
+	Os
+}
+
+func (o Os) GetName() string { // supperclassning methodi
+	return o.Name
+}
+
+type OSInterface interface { // interface
+	GetName() string
+}
+
+func Run(os OSInterface) { // funksiya interfacening talablarini qondiruvchi typeqabul qiladi, bu talabni supperclass qondiradi, shuningdek uning vorislariham
+
+	fmt.Println("Loading " + os.GetName())
+}
+
+type Windows struct {
+	Os
+}
+
+func main() {
+
+	Run(MacOs{Os{"Big Sur"}})
+	Run(Linux{Os{"Ubuntu"}})
+	Run(Windows{Os{"Windows 11"}})
+}
+```
+
+### 04 concurrency
  - **concurrency** - ikki yoki undan ortiq **vazifalarni** bir vaqtning o'zida (parallel) bajarish tushunchasi. **vazifalar** metodlar (funksiyalari), dastur qismlari yoki boshqa dasturlarni o'z ichiga olishi mumkin.
 - Golangdagi parallellik - bu funktsiyalarning bir-biridan mustaqil ishlashi qobiliyati. Goroutine - bu boshqa funktsiyalar bilan bir vaqtda ishlashga qodir bo'lgan funktsiya. Funktsiyani gorutin sifatida yaratganingizda, u rejalashtirilgan bo'lib, keyin mavjud mantiqiy protsessorda bajariladigan mustaqil ish birligi sifatida ko'rib chiqiladi.
 
@@ -395,6 +570,83 @@ func main() {
 }
 ```
 #### 6 data_race
+
+- *shared variable* - barcha funksiyalar ishlatishi mumkin bo'lgan o'zgaruchi(deb tushunsak bo'ladi)
+- **data_race** - *shared variable* bilan ishlayotganda bir vaqitning o'zida, ham read, ham write operatsiyaning bo'lishi data race ga olib keladi
+
+- data race - concurrent programmningnda ihlatiladigan eng og'riqli nuqta hisoblanadi
+chunki concurrent programming da debug qilish qiyinroq
+- data rece bo'layotgan yoki bolmayotganini aniqlash uchun go tool chain ning ichida instrument bor:
 ```
 go run -race main.go
+``` 
+
 ```
+package main
+
+import "fmt"
+
+func GetNumber() {
+	var number int
+	func() {
+		number = 7
+	}()
+	fmt.Println(number)
+}
+func main() {
+	GetNumber()
+}
+/*
+go run -race 1_data_race.go 
+out:
+7
+*/
+```
+yuqoridagi misolda data race yo'q, chunki ammalar ketma ketlikda bajarilyapti.
+
+data race:
+```
+package main
+
+import "fmt"
+
+func GetNumber() {
+	var number int
+	go func() { // ma'lumot yozilyapti
+		number = 7
+	}()
+	fmt.Println(number) // malumot o'qilyapti
+}
+func main() {
+	GetNumber()
+}
+out:
+0
+==================
+WARNING: DATA RACE
+Write at 0x00c0000200c8 by goroutine 7:
+  main.GetNumber.func1()
+      /home/ubuntu/Desktop/JasurbekUz/The-Go-Programming-Language/02_concurrency/6_sync.Mutex-data_race/1_data_race.go:8 +0x30
+
+Previous read at 0x00c0000200c8 by main goroutine:
+  main.GetNumber()
+      /home/ubuntu/Desktop/JasurbekUz/The-Go-Programming-Language/02_concurrency/6_sync.Mutex-data_race/1_data_race.go:10 +0xba
+  main.main()
+      /home/ubuntu/Desktop/JasurbekUz/The-Go-Programming-Language/02_concurrency/6_sync.Mutex-data_race/1_data_race.go:13 +0x24
+
+Goroutine 7 (running) created at:
+  main.GetNumber()
+      /home/ubuntu/Desktop/JasurbekUz/The-Go-Programming-Language/02_concurrency/6_sync.Mutex-data_race/1_data_race.go:7 +0xb0
+  main.main()
+      /home/ubuntu/Desktop/JasurbekUz/The-Go-Programming-Language/02_concurrency/6_sync.Mutex-data_race/1_data_race.go:13 +0x24
+==================
+Found 1 data race(s)
+exit status 66
+```
+yuqorudagi dasturimizda **channel**dan foydalansak bo'lar edi, kanalham kutib turish vazifasini bajaradi(blocklash orqali) lekin kutib turiladigan narsada channel ishlatish noto'gri, channel ning vazifasi goroutinelar aro ma'lumot lamashish
+
+bundan to'g'ririg'i **waitgroup** bo'ladi, waitgroup hamma goroutinelar tuggalanishini kutib turadigan narsa! (belgrilgan tasklarizni) 
+
+lekin aynan datarace lar uchun "sync" packagi ichida alohida type bor. bu **mutex**lar deyiladi!
+
+* **sync.Mutex**
